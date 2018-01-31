@@ -1,0 +1,1 @@
+Please store the game build in this folder
