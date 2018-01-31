@@ -1,4 +1,4 @@
-# Group Project
+# Group 5 - Henry Crofts, Ashley Long, Samuel McMillian, Dawid Hojka
 
 This is the repository for your group project, keep it neat and well organised with sensible folder structures.
 
