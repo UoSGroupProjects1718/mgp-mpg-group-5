@@ -7,9 +7,10 @@ public class Activator : MonoBehaviour {
 
     public KeyCode key;
     public bool active = false;
-    GameObject node;
+    GameObject nodeObj;
+    Node node;
 
-    public Node nodee;
+    //public Node node;
 
 	void Start () {
 		
@@ -19,9 +20,26 @@ public class Activator : MonoBehaviour {
     void Update()
     {
         if (Input.GetKeyDown(key) && active)
-        { 
-            nodee.Dir = 2;
-            CheckDistance();
+        {
+            float totalDifference = Vector3.Distance(this.transform.position, nodeObj.transform.position);
+
+            if (totalDifference >= 1)
+            {
+                Debug.Log(totalDifference + " BAD");
+                node.Dir = 2;
+            }
+            else if (totalDifference >= 0.3)
+            {
+                Debug.Log(totalDifference + " GOOD");
+                node.Dir = 2;
+            }
+            else if (totalDifference <= 0.3)
+            { 
+                Debug.Log(totalDifference + " PERFECT");
+                node.Dir = 2;
+            }
+
+           // Destroy(nodeObj);
       }
 	}
 
@@ -30,7 +48,8 @@ public class Activator : MonoBehaviour {
         active = true;
         if (collision.gameObject.tag == "Node")
         {
-            node = collision.gameObject;
+            nodeObj = collision.gameObject;
+            node = collision.gameObject.GetComponent<Node>();
         }
     }
 
@@ -41,11 +60,8 @@ public class Activator : MonoBehaviour {
 
     void CheckDistance()
     {
-        float differenceX = this.transform.position.x - nodee.transform.position.x;
-        float differenceY = this.transform.position.y - nodee.transform.position.y;
+        
 
-        float totalDifference = differenceX + differenceY;
-
-        Debug.Log(totalDifference);
+        //Debug.Log(totalDifference);
     }
 }

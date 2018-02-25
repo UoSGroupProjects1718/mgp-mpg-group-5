@@ -6,15 +6,16 @@ public class Node : MonoBehaviour {
 
     Rigidbody2D rb;
     public float speed;
-    public int Dir = 1;
+    public int Dir;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        Dir = 1;
     }
     
     void Start () {
-    rb.velocity = new Vector2(0, -speed);
+        rb.velocity = new Vector2(0, -speed);
 	}
 	
 	void Update () {
