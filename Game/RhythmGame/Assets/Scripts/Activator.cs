@@ -14,11 +14,15 @@ public class Activator : MonoBehaviour {
 	void Start () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(key) && active)
+        { 
             nodee.Dir = 2;
+            CheckDistance();
+      }
 	}
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,5 +37,15 @@ public class Activator : MonoBehaviour {
     void OnTriggerExit2D(Collider2D collision)
     {
         active = false;
+    }
+
+    void CheckDistance()
+    {
+        float differenceX = this.transform.position.x - nodee.transform.position.x;
+        float differenceY = this.transform.position.y - nodee.transform.position.y;
+
+        float totalDifference = differenceX + differenceY;
+
+        Debug.Log(totalDifference);
     }
 }
