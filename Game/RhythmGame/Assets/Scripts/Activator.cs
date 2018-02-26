@@ -12,6 +12,7 @@ public class Activator : MonoBehaviour {
     // Script references
     Node node;
     ScoreManager score;
+    Spawner spawn;
 
     int badScore = 10;
     int goodScore = 50;
