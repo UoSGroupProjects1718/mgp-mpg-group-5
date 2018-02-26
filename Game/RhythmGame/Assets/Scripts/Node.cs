@@ -8,6 +8,8 @@ public class Node : MonoBehaviour {
     public float speed;
     public int Dir;
 
+    //public int scoreValue = 100;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

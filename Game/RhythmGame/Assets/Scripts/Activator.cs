@@ -8,11 +8,16 @@ public class Activator : MonoBehaviour {
     public KeyCode key;
     public bool active = false;
     GameObject nodeObj;
+
+    // Script references
     Node node;
+    ScoreManager score;
 
-    //public Node node;
+    int badScore = 10;
+    int goodScore = 50;
+    int perfectScore = 100;
 
-	void Start () {
+    void Start () {
 		
 	}
 
@@ -27,16 +32,19 @@ public class Activator : MonoBehaviour {
             {
                 Debug.Log(totalDifference + " BAD");
                 node.Dir = 2;
+                score.playerOneScore += badScore;
             }
             else if (totalDifference >= 0.3)
             {
                 Debug.Log(totalDifference + " GOOD");
                 node.Dir = 2;
+                score.playerOneScore += goodScore;
             }
             else if (totalDifference <= 0.3)
             { 
                 Debug.Log(totalDifference + " PERFECT");
                 node.Dir = 2;
+                score.playerOneScore += perfectScore;
             }
 
            // Destroy(nodeObj);
