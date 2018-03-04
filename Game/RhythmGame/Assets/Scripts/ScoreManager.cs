@@ -12,6 +12,8 @@ public class ScoreManager : MonoBehaviour {
     public Text textPlayerOne;
     public Text textPlayerTwo;
 
+    public Text popUpText;
+
     private void Awake()
     {
         // Set up text reference
@@ -33,5 +35,21 @@ public class ScoreManager : MonoBehaviour {
     {
         textPlayerOne.text = "Player one score " + playerOneScore.ToString();
         textPlayerTwo.text = "Player two score " + playerTwoScore.ToString();
+    }
+
+    public void UpdateString(string scoreType)
+    {
+        if (scoreType == "Bad")
+        {
+            popUpText.text = "BAD";
+        }
+        else if (scoreType == "Good")
+        {
+            popUpText.text = "GOOD";
+        }
+        else if (scoreType == "Perfect")
+        {
+            popUpText.text = "PERFECT";
+        }
     }
 }

@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-    public GameObject[] spawners;
+   // public GameObject[] spawners;
     public GameObject node;
+    public Transform spawnLocation;
 
-    int arrayIndex;
+   // int arrayIndex;
 
-    private void Update()
+    private void Start()
     {
-        SpawnNode();
+        InvokeRepeating("SpawnNode", 0f, 3f);
     }
 
     // Randomly select a spawn point 
     public void SpawnNode()
     {
-        StartCoroutine(SpawnWait());
-        //SpawnWait();
-        arrayIndex = Random.Range(0, 5);
-        var randomSpawn = spawners[arrayIndex];
-        Instantiate(node, randomSpawn.transform.position, Quaternion.identity);
-    }
-
-    IEnumerator SpawnWait()
-    {
-        yield return new WaitForSeconds(5);
+        Instantiate(node, spawnLocation.position, transform.rotation);
+       // arrayIndex = Random.Range(0, 5);
+       // var randomSpawn = spawners[arrayIndex];
+       // Instantiate(node, randomSpawn.transform.position, Quaternion.identity);
     }
 }

@@ -11,45 +11,58 @@ public class Activator : MonoBehaviour {
 
     // Script references
     Node node;
-    ScoreManager score;
+
     Spawner spawn;
+
+    ScoreManager score;
 
     int badScore = 10;
     int goodScore = 50;
     int perfectScore = 100;
 
     void Start () {
-		
-	}
+        score = GameObject.Find("Managers").GetComponent<ScoreManager>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(key) && active)
+        if (Input.touchCount > 0)
         {
-            float totalDifference = Vector3.Distance(this.transform.position, nodeObj.transform.position);
+            Touch touch = Input.touches[0];
 
-            if (totalDifference >= 1)
+            if (Input.GetKeyDown(key) && active || touch.phase == TouchPhase.Began && active)
             {
-                Debug.Log(totalDifference + " BAD");
-                node.Dir = 2;
-                score.playerOneScore += badScore;
-            }
-            else if (totalDifference >= 0.3)
-            {
-                Debug.Log(totalDifference + " GOOD");
-                node.Dir = 2;
-                score.playerOneScore += goodScore;
-            }
-            else if (totalDifference <= 0.3)
-            { 
-                Debug.Log(totalDifference + " PERFECT");
-                node.Dir = 2;
-                score.playerOneScore += perfectScore;
-            }
+                float totalDifference = Vector3.Distance(this.transform.position, nodeObj.transform.position);
 
-           // Destroy(nodeObj);
-      }
+                if (totalDifference >= 1)
+                {
+                    Debug.Log(totalDifference + " BAD");
+                    node.Dir = 2;
+                    score.playerOneScore += badScore;
+                    print(score.playerOneScore);
+                    score.UpdateString("Bad");
+                }
+                else if (totalDifference >= 0.3)
+                {
+                    Debug.Log(totalDifference + " GOOD");
+                    node.Dir = 2;
+                    score.playerOneScore += goodScore;
+                    print(score.playerOneScore);
+                    score.UpdateString("Good");
+                }
+                else if (totalDifference <= 0.3)
+                {
+                    Debug.Log(totalDifference + " PERFECT");
+                    node.Dir = 2;
+                    score.playerOneScore += perfectScore;
+                    print(score.playerOneScore);
+                    score.UpdateString("Perfect");
+                }
+
+                // Destroy(nodeObj);
+            }
+        }
 	}
 
     void OnTriggerEnter2D(Collider2D collision)
