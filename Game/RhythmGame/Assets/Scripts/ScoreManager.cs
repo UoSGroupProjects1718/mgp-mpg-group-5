@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 
+    public static ScoreManager instance = null;
+
     // Player score variables
     public int playerOneScore;
     public int playerTwoScore;
@@ -12,13 +14,21 @@ public class ScoreManager : MonoBehaviour {
     public Text textPlayerOne;
     public Text textPlayerTwo;
 
-    public Text popUpText;
+    //public Text popUpText;
 
     private void Awake()
     {
-        // Set up text reference
-        //textPlayerOne = GetComponent<Text>();
-        //textPlayerTwo = GetComponent<Text>();
+        // Check if instance is equal to null
+        if (instance == null)
+        {
+            // If no GameManager exists, set instance to this.
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            // If a GameManager already exists, destroy the new GameManager
+            Destroy(gameObject);
+        }
 
         // Reset player score on awake
         playerOneScore = 0;
@@ -37,7 +47,42 @@ public class ScoreManager : MonoBehaviour {
         textPlayerTwo.text = "Player two score " + playerTwoScore.ToString();
     }
 
-    public void UpdateString(string scoreType)
+    public void AddScore(string scoreType)
+    {
+        if (GameManager.instance.isPlayerOne)
+        {
+            if (scoreType == "Bad")
+            {
+                playerOneScore += 10;
+            }
+            else if (scoreType == "Good")
+            {
+                playerOneScore += 50;
+            }
+            else if (scoreType == "Perfect")
+            {
+                playerOneScore += 100;
+            }
+        }
+        else if (!GameManager.instance.isPlayerOne)
+        {
+            if (scoreType == "Bad")
+            {
+                playerTwoScore += 10;
+            }
+            else if (scoreType == "Good")
+            {
+                playerTwoScore += 50;
+            }
+            else if (scoreType == "Perfect")
+            {
+                playerTwoScore += 100;
+            }
+        }
+    }
+
+    // TO BE REMOVED, include in AddScore().
+   /* public void UpdateString(string scoreType)
     {
         if (scoreType == "Bad")
         {
@@ -51,5 +96,5 @@ public class ScoreManager : MonoBehaviour {
         {
             popUpText.text = "PERFECT";
         }
-    }
+    }*/
 }

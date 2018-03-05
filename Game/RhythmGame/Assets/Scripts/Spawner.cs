@@ -19,8 +19,5 @@ public class Spawner : MonoBehaviour {
     public void SpawnNode()
     {
         Instantiate(node, spawnLocation.position, transform.rotation);
-       // arrayIndex = Random.Range(0, 5);
-       // var randomSpawn = spawners[arrayIndex];
-       // Instantiate(node, randomSpawn.transform.position, Quaternion.identity);
     }
 }
