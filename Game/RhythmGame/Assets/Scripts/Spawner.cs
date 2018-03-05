@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-   // public GameObject[] spawners;
-    public GameObject node;
-    public Transform spawnLocation;
+    public GameObject playerOneNode;
+    public GameObject playerTwoNode;
 
-   // int arrayIndex;
+    public Transform playerOneSpawnLocation;
+    public Transform playerTwoSpawnLocation;
+
+    // int arrayIndex;
 
     private void Start()
     {
@@ -18,6 +20,10 @@ public class Spawner : MonoBehaviour {
     // Randomly select a spawn point 
     public void SpawnNode()
     {
-        Instantiate(node, spawnLocation.position, transform.rotation);
+        if(GameManager.instance.isPlayerOne)
+            Instantiate(playerOneNode, playerOneSpawnLocation.position, transform.rotation);
+
+        else if (!GameManager.instance.isPlayerOne)
+            Instantiate(playerTwoNode, playerTwoSpawnLocation.position, transform.rotation);
     }
 }

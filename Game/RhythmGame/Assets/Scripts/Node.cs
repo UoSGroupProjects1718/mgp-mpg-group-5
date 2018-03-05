@@ -8,19 +8,13 @@ public class Node : MonoBehaviour {
     public float speed;
     public int Dir;
 
-    public bool spawned = false;
+    public Transform[] p1Waypoints = new Transform[5];
+    public int p1CurrentWaypoint = 0;
 
-    public Transform[] waypoints = new Transform[5];
-    public int currentWaypoint = 0;
-    Transform targetWaypoint;
+    public Transform[] p2Waypoints = new Transform[5];
+    public int p2CurrentWaypoint = 0;
 
-    private Transform target;
-
-    //Transform targetWaypoint;
-
-    //public bool playerOneTurn = true;
-
-    //public int scoreValue = 100;
+    bool turnSwitch = false;
 
     private void Awake()
     {
@@ -28,45 +22,73 @@ public class Node : MonoBehaviour {
         Dir = 1;
     }
     
-    void Start () {
-        // rb.velocity = new Vector2(-speed, 0);
+    void Start () {        
+        p1Waypoints[0] = GameObject.Find("p1Waypoint1").transform;
+        p1Waypoints[1] = GameObject.Find("p1Waypoint2").transform;
+        p1Waypoints[2] = GameObject.Find("p1Waypoint3").transform;
 
-        
-        waypoints[0] = GameObject.Find("p1Waypoint1").transform;
-        waypoints[1] = GameObject.Find("p1Waypoint2").transform;
-        waypoints[2] = GameObject.Find("p1Waypoint3").transform;
-
-
-
-        //target = waypoints[0];
+        p2Waypoints[0] = GameObject.Find("p2Waypoint1").transform;
+        p2Waypoints[1] = GameObject.Find("p2Waypoint2").transform;
+        p2Waypoints[2] = GameObject.Find("p2Waypoint3").transform;
     }
-	
-	void Update () {
-        // SetDirection();
 
-
-        rb.transform.position = Vector2.MoveTowards(rb.transform.position, waypoints[currentWaypoint].transform.position, speed * Time.deltaTime);
-
-        if (Vector2.Distance(this.transform.position, waypoints[currentWaypoint].transform.position) < 0.1)
+    void Update()
+    {
+        if (GameManager.instance.isPlayerOne && this.tag == "PlayerOneTag")
         {
-            currentWaypoint++;
-            if (currentWaypoint >= 3)
+            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position, speed * Time.deltaTime);
+
+            if (Vector2.Distance(this.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position) < 0.1)
             {
-                Destroy(this.gameObject);
+                p1CurrentWaypoint++;
+                if (p1CurrentWaypoint >= 3)
+                {
+                    Destroy(this.gameObject);
+                }
             }
+            NodeClick();
+        }
+        else if (!GameManager.instance.isPlayerOne && this.tag == "PlayerTwoTag")
+        {
+            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position, speed * Time.deltaTime);
+
+            if (Vector2.Distance(this.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position) < 0.1)
+            {
+                p2CurrentWaypoint++;
+                if (p2CurrentWaypoint >= 3)
+                {
+                    Destroy(this.gameObject);
+                }
+            }
+            NodeClick();
         }
 
+        
+    }
 
-        /*if (waypoints.Length == waypoints.Length + 1)
+    void NodeClick()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            Destroy(this.gameObject);
-        }*/
+            //Destroy(this.gameObject);
+            GameManager.instance.TurnSwitch();
+        }
     }
 
     void GetNextWaypoint()
     {
         
     }
+
+
+
+
+
+
+
+
+
+
 
     /*void MoveTowards()
     {

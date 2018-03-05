@@ -9,11 +9,10 @@ public class GameManager : MonoBehaviour {
 
     Node node;
 
-    public bool isPlayerOne;
+    private GameObject playerOneSpawner;
+    private GameObject playerTwoSpawner;
 
-   /* public Transform[] = new Transform[1];
-    public int currentWaypoint = 0;
-    Transform targetWaypoint;*/
+    public bool isPlayerOne;
 
     private void Awake()
     {
@@ -30,18 +29,44 @@ public class GameManager : MonoBehaviour {
         }
 
         // Set the first players turn
-        isPlayerOne = true;
+        isPlayerOne = false;
+
+        //playerTwoSpawner.SetActive(false);
     }
     void Start ()
     {
-        /*waypoints[0] = GameObject.Find("p1Waypoint1").transform;
-        waypoints[1] = GameObject.Find("p1Waypoint2").transform;*/
+        
     }
 
 	void Update ()
     {
-        //node.transform.position = Vector2.MoveTowards(node.transform.position, waypoints[0].transform.position, node.speed * Time.deltaTime);
-	}
+        /*if (isPlayerOne)
+        {
+            playerOneSpawner.SetActive(true);
+            playerTwoSpawner.SetActive(false);
+        }
+        else if (!isPlayerOne)
+        {
+            playerOneSpawner.SetActive(false);
+            playerTwoSpawner.SetActive(true);
+        }*/
+    }
+
+    public void TurnSwitch()
+    {
+        print("Turn switch");
+
+        if (isPlayerOne == true)
+        {
+            isPlayerOne = false;
+            print("Player twos turn");
+        }
+        else if (!isPlayerOne)
+        {
+            isPlayerOne = true;
+            print("Player ones turn!");
+        }
+    }
 
     // Add the players score
     void AddScore(int score)
