@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour {
         }*/
     }
 
-    public void TurnSwitch()
+    public void TurnSwitch(GameObject node)
     {
         print("Turn switch");
 
@@ -60,11 +60,13 @@ public class GameManager : MonoBehaviour {
         {
             isPlayerOne = false;
             print("Player twos turn");
+            Destroy(node);
         }
         else if (!isPlayerOne)
         {
             isPlayerOne = true;
             print("Player ones turn!");
+            Destroy(node);
         }
     }
 

@@ -19,7 +19,6 @@ public class Node : MonoBehaviour {
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        Dir = 1;
     }
     
     void Start () {        
@@ -71,7 +70,7 @@ public class Node : MonoBehaviour {
         if (Input.GetMouseButtonDown(0))
         {
             //Destroy(this.gameObject);
-            GameManager.instance.TurnSwitch();
+            GameManager.instance.TurnSwitch(this.gameObject);
         }
     }
 
