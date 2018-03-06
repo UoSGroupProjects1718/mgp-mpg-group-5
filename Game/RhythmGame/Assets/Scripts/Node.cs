@@ -14,8 +14,6 @@ public class Node : MonoBehaviour {
     public Transform[] p2Waypoints = new Transform[5];
     public int p2CurrentWaypoint = 0;
 
-    bool turnSwitch = false;
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -60,9 +58,7 @@ public class Node : MonoBehaviour {
                 }
             }
             NodeClick();
-        }
-
-        
+        }        
     }
 
     void NodeClick()

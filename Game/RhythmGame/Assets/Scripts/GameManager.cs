@@ -40,23 +40,14 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
-        /*if (isPlayerOne)
-        {
-            playerOneSpawner.SetActive(true);
-            playerTwoSpawner.SetActive(false);
-        }
-        else if (!isPlayerOne)
-        {
-            playerOneSpawner.SetActive(false);
-            playerTwoSpawner.SetActive(true);
-        }*/
+        
     }
 
     public void TurnSwitch(GameObject node)
     {
         print("Turn switch");
 
-        if (isPlayerOne == true)
+        if (isPlayerOne)
         {
             isPlayerOne = false;
             print("Player twos turn");
