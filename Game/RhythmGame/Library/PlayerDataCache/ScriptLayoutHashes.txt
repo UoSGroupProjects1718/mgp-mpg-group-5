@@ -1,9 +1,9 @@
 Android
 SceneListBegin?
-Assets/Scenes/Level_Test.unity
 Assets/Scenes/Menu.unity
 Assets/Scenes/Information.unity
 Assets/Scenes/Level 01.unity
+Assets/Scenes/Level_Test.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.OnClick
 6013c7b5e74df4fb1dffaddfeadc77d7 Assembly-CSharp.dll:.Node
