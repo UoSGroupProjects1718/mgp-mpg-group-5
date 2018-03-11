@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour {
     // Add the players score
     void AddScore(int score)
     {
-
+        
     }
 
     // Select the next waypoint
