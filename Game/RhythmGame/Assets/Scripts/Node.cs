@@ -9,6 +9,7 @@ public class Node : MonoBehaviour {
 
     // Create a speed variable
     public float speed = 4f;
+    public bool isActive = false;
 
     #region Waypoint Variables
 
@@ -63,6 +64,9 @@ public class Node : MonoBehaviour {
                 if (p1CurrentWaypoint >= finalWaypoint)
                 {
                     Destroy(this.gameObject);
+
+                    // If the player misses their node switch the game turn
+                    GameManager.instance.isPlayerOne = false;
                 }
             }
         }
@@ -82,30 +86,11 @@ public class Node : MonoBehaviour {
                 if (p2CurrentWaypoint >= finalWaypoint)
                 {
                     Destroy(this.gameObject);
+
+                    // If the player misses their node switch the game turn
+                    GameManager.instance.isPlayerOne = true;
                 }
             }
         }        
     }
-
-   /* void NodeClick()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameManager.instance.TurnSwitch(this.gameObject);
-        }
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        print("Touched activator");
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if (collision.gameObject.tag == "Activator")
-            {
-                print("Touched Activator");
-                Destroy(this.gameObject);
-            }
-            print("No activator detected");
-        }
-    }*/
 }

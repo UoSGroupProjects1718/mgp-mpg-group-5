@@ -11,6 +11,10 @@ public class GameManager : MonoBehaviour {
     public SpawnNode playerOneSpawner;
     public SpawnNode playerTwoSpawner;
 
+    // Reference to Node script
+    public Node playerOneNode;
+    public Node playerTwoNode;
+
     // Turn check bool
     public bool isPlayerOne;
 
@@ -33,12 +37,31 @@ public class GameManager : MonoBehaviour {
     }
     void Start ()
     {
-      
+        playerTwoSpawner.SpawnNewNode();
     }
 
 	void Update ()
     {
-
+        // Check if player 1
+        if (isPlayerOne)
+        {
+            playerTwoNode.isActive = false;
+            if (playerOneNode.isActive == false)
+            {
+                playerOneSpawner.SpawnNewNode();
+                playerOneNode.isActive = true;
+            }  
+        }
+        // Check if player 2
+        else
+        {
+            playerOneNode.isActive = false;
+            if (playerTwoNode.isActive == false)
+            {
+                playerTwoSpawner.SpawnNewNode();
+                playerTwoNode.isActive = true;
+            }    
+        }
     }
 
     public void TurnSwitch(GameObject node)
