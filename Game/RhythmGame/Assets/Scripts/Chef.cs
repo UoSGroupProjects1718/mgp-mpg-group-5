@@ -13,12 +13,13 @@ public class Chef : MonoBehaviour {
     Rigidbody2D rb;
 
     public float speed = 3;
-    public float timer = Random.Range(0, 3);
+    public float timer;
 
     void Awake ()
     {
         rb = GetComponent<Rigidbody2D>();
-	}
+        timer = Random.Range(0, 3);
+    }
 
     private void Start()
     {
@@ -44,8 +45,6 @@ public class Chef : MonoBehaviour {
         {
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1chefWaypoints[chefCurrentWaypoint].transform.position, speed * Time.deltaTime);
 
-            print(timer);
-
             if (timer <= 0f)
             {
                 timer = Random.Range(0, 3);
@@ -56,8 +55,6 @@ public class Chef : MonoBehaviour {
         if (this.gameObject.tag == "PlayerTwoTag")
         {
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2chefWaypoints[chef2CurrentWaypoint].transform.position, speed * Time.deltaTime);
-
-            print(timer);
 
             if (timer <= 0f)
             {

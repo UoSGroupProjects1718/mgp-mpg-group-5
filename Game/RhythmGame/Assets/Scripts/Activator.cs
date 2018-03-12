@@ -12,7 +12,7 @@ public class Activator : MonoBehaviour {
     // Script references
     Node node;
 
-    Spawner spawn;
+   // Spawner spawn;
 
    // ScoreManager score;
 
@@ -28,7 +28,7 @@ public class Activator : MonoBehaviour {
         //{
            // Touch touch = Input.touches[0];
 
-            if (Input.GetKeyDown(key) && active)
+           /* if (Input.GetKeyDown(key) && active)
             {
             float totalDifference = Vector2.Distance(this.transform.position, nodeObj.transform.position);
 
@@ -52,7 +52,7 @@ public class Activator : MonoBehaviour {
                 }
 
                 // Destroy(nodeObj);
-            }
+            }*/
        // }
 	}
 

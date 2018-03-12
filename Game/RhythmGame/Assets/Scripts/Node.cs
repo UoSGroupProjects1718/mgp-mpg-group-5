@@ -70,58 +70,17 @@ public class Node : MonoBehaviour {
         }
     }
 
-    void GetNextWaypoint()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-
-
-
-
-
-
-
-
-
-
-    /*void MoveTowards()
-    {
-        if (GameManager.instance.isPlayerOne)
+        print("Touched activator");
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            for (int i = 0; i < moveTowards.Length; i++)
+            if (collision.gameObject.tag == "Activator")
             {
-                rb.transform.position = Vector2.MoveTowards(rb.transform.position, moveTowards[i].transform.position, speed * Time.deltaTime);
-
-                if (Vector2.Equals(rb.transform.position, moveTowards[i].transform.position))
-                    i++;
+                print("Touched Activator");
+                Destroy(this.gameObject);
             }
+            print("No activator detected");
         }
     }
-
-    void SetDirection()
-    {
-        if (GameManager.instance.isPlayerOne)
-        {
-            if (Dir == 1)
-            {
-                rb.velocity = new Vector2(-speed, 0);
-            }
-            else if (Dir == 2)
-            {
-                rb.velocity = new Vector2(0, -speed);
-            }
-        }
-        else if (!GameManager.instance.isPlayerOne)
-        {
-            if (Dir == 1)
-            {
-                rb.velocity = new Vector2(speed, 0);
-            }
-            else if (Dir == 2)
-            {
-                rb.velocity = new Vector2(0, -speed);
-            }
-        }
-    }*/
 }

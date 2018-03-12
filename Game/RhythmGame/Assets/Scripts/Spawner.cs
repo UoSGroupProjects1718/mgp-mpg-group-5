@@ -20,10 +20,16 @@ public class Spawner : MonoBehaviour {
     // Randomly select a spawn point 
     public void SpawnNode()
     {
-        if(GameManager.instance.isPlayerOne)
+        if (GameManager.instance.isPlayerOne)
+        {
             Instantiate(playerOneNode, playerOneSpawnLocation.position, transform.rotation);
+            print("playerone");
+        }
 
         else if (!GameManager.instance.isPlayerOne)
+        {
             Instantiate(playerTwoNode, playerTwoSpawnLocation.position, transform.rotation);
+            print("playertwo");
+        }
     }
 }

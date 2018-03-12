@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour {
 
     Node node;
 
-    private GameObject playerOneSpawner;
-    private GameObject playerTwoSpawner;
+    public SpawnNode playerOneSpawner;
+    public SpawnNode playerTwoSpawner;
 
     public bool isPlayerOne;
 
@@ -30,8 +30,6 @@ public class GameManager : MonoBehaviour {
 
         // Set the first players turn
         isPlayerOne = false;
-
-        //playerTwoSpawner.SetActive(false);
     }
     void Start ()
     {
@@ -40,7 +38,7 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
-        
+
     }
 
     public void TurnSwitch(GameObject node)
@@ -50,32 +48,13 @@ public class GameManager : MonoBehaviour {
         if (isPlayerOne)
         {
             isPlayerOne = false;
-            print("Player twos turn");
             Destroy(node);
+            playerTwoSpawner.SpawnNewNode();
         }
         else if (!isPlayerOne)
         {
             isPlayerOne = true;
-            print("Player ones turn!");
             Destroy(node);
         }
-    }
-
-    // Add the players score
-    void AddScore(int score)
-    {
-        
-    }
-
-    // Select the next waypoint
-    void SetWaypoint()
-    {
-
-    }
-
-    // Move the node to the chosen waypoint
-    void MoveNode()
-    {
-
     }
 }
