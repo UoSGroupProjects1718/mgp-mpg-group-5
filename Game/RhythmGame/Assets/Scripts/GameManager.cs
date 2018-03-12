@@ -7,11 +7,11 @@ public class GameManager : MonoBehaviour {
     // Singleton pattern to make sure only one instance of GameManager exists
     public static GameManager instance = null;
 
-    Node node;
-
+    // Reference to SpawnNode script
     public SpawnNode playerOneSpawner;
     public SpawnNode playerTwoSpawner;
 
+    // Turn check bool
     public bool isPlayerOne;
 
     private void Awake()
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     }
     void Start ()
     {
-        
+      
     }
 
 	void Update ()
@@ -48,12 +48,14 @@ public class GameManager : MonoBehaviour {
         if (isPlayerOne)
         {
             isPlayerOne = false;
-            Destroy(node);
             playerTwoSpawner.SpawnNewNode();
+            Destroy(node);
+            
         }
         else if (!isPlayerOne)
         {
             isPlayerOne = true;
+            playerOneSpawner.SpawnNewNode();
             Destroy(node);
         }
     }

@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class DestroyBar : MonoBehaviour {
 
+    /* SCRIPT IS NO LONGER USED SINCE NODES FOLLOW WAYPOINTS
+     * 
+     * PURELY HERE FOR REFERENCE TO OLD METHOD
+     * 
+     * SCHEDULED FOR DELETION
+     * 
+     */
+
+
     GameObject toDestroy;
 	void Start () {
 		

@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
+    /*CURRENTLY UNUSED, DID NOT WORK.
+     
+    CHECK NEW SPAWNNODE SCRIPT.
+
+    THIS SCRIPT IS HERE FOR REFERENCE TO OLD METHOD, SCHEDULED FOR DELETION
+     */
+
+
     public GameObject playerOneNode;
     public GameObject playerTwoNode;
 

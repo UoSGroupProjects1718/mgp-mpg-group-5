@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class SpawnNode : MonoBehaviour {
 
+    // Create a reference to a node
     public GameObject node;
 
+    // Create a reference to the location of the spawner this script is attached to.
     public Transform spawnLocation;
 
 	// Use this for initialization
@@ -15,9 +17,9 @@ public class SpawnNode : MonoBehaviour {
         
     }
 	
-	// Update is called once per frame
 	public void SpawnNewNode()
     {
+        // Create a copy of node at the spawnLocation
         Instantiate(node, spawnLocation.position, transform.rotation);
     }
 }

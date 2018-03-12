@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour {
 
+    // Singleton pattern to make sure only one instance of ScoreManager exists
     public static ScoreManager instance = null;
 
     // Player score variables
@@ -14,19 +15,17 @@ public class ScoreManager : MonoBehaviour {
     public Text textPlayerOne;
     public Text textPlayerTwo;
 
-    //public Text popUpText;
-
     private void Awake()
     {
         // Check if instance is equal to null
         if (instance == null)
         {
-            // If no GameManager exists, set instance to this.
+            // If no ScoreManager exists, set instance to this.
             instance = this;
         }
         else if (instance != this)
         {
-            // If a GameManager already exists, destroy the new GameManager
+            // If a ScoreManager already exists, destroy the new GameManager
             Destroy(gameObject);
         }
 
@@ -37,20 +36,24 @@ public class ScoreManager : MonoBehaviour {
 
     void Start ()
     {
+        // Display players score on screen
         textPlayerOne.text = "Player one score " + playerOneScore.ToString();
         textPlayerTwo.text = "Player two score " + playerTwoScore.ToString();
     }
 
 	void Update ()
     {
+        // Display players score on screen
         textPlayerOne.text = "Player one score " + playerOneScore.ToString();
         textPlayerTwo.text = "Player two score " + playerTwoScore.ToString();
     }
 
     public void AddScore(string scoreType)
     {
+        // Check if player 1
         if (GameManager.instance.isPlayerOne)
         {
+            // Check scoreType, add correct score in relation to players performance
             if (scoreType == "Bad")
             {
                 playerOneScore += 10;
@@ -64,8 +67,10 @@ public class ScoreManager : MonoBehaviour {
                 playerOneScore += 100;
             }
         }
+        // Check if player 2
         else if (!GameManager.instance.isPlayerOne)
         {
+            // Check scoreType, add correct score in relation to players performance
             if (scoreType == "Bad")
             {
                 playerTwoScore += 10;
@@ -80,21 +85,4 @@ public class ScoreManager : MonoBehaviour {
             }
         }
     }
-
-    // TO BE REMOVED, include in AddScore().
-   /* public void UpdateString(string scoreType)
-    {
-        if (scoreType == "Bad")
-        {
-            popUpText.text = "BAD";
-        }
-        else if (scoreType == "Good")
-        {
-            popUpText.text = "GOOD";
-        }
-        else if (scoreType == "Perfect")
-        {
-            popUpText.text = "PERFECT";
-        }
-    }*/
 }
