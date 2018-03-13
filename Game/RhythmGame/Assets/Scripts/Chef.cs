@@ -11,7 +11,7 @@ public class Chef : MonoBehaviour
     // Variable to store current array index
     public int chefCurrentWaypoint = 0;
     public int chef2CurrentWaypoint = 0;
-
+    Vector3 lastPos;
     // Reference to GameObject RigidBody
     Rigidbody2D rb;
 
@@ -31,6 +31,8 @@ public class Chef : MonoBehaviour
 
     private void Start()
     {
+        lastPos = this.transform.position;
+
         // Find all the chef waypoints for player 1 chef and add them to the corect array
         p1chefWaypoints[0] = GameObject.Find("p1ChefWaypoint1").transform;
         p1chefWaypoints[1] = GameObject.Find("p1ChefWaypoint2").transform;
@@ -83,5 +85,33 @@ public class Chef : MonoBehaviour
                 chef2CurrentWaypoint = Random.Range(0, 5);
             }
         }
+
+        LookAtRotation();
+    }
+
+    void LookAtRotation()
+    {
+        Vector3 lastRotation = this.transform.eulerAngles;
+
+        float targetRotation = Mathf.Atan2(lastPos.x, lastPos.y) * Mathf.Rad2Deg - 90;
+
+        float newRotation = Mathf.LerpAngle(lastRotation.z, targetRotation, 6f);
+
+        this.transform.rotation = Quaternion.AngleAxis(newRotation, Vector3.forward);
+
+
+
+        /*
+        if(lastPos == this.transform.position) { return; }
+
+        Vector3 thisRot = this.transform.eulerAngles;
+
+        this.transform.LookAt(lastPos);
+
+        Vector3 newRot = this.transform.eulerAngles;
+
+        this.transform.eulerAngles = new Vector3(thisRot.x, thisRot.y, newRot.z + 180);*/
+
+        lastPos = this.transform.position;
     }
 }
