@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
     }
     void Start ()
     {
-        playerTwoSpawner.SpawnNewNode();
+        //playerTwoSpawner.SpawnNewNode();
     }
 
 	void Update ()
