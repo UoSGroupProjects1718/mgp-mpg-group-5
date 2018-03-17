@@ -6,10 +6,14 @@ public class TouchController : MonoBehaviour
 {
     Vector3 touchWorldPos;
 
+    public Camera cam;
+
     TouchPhase touchPhase = TouchPhase.Ended;
 
 	void Update ()
     {
+
+
         //if (Input.GetMouseButtonDown(0))
         //{
         //    touchWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -32,7 +36,7 @@ public class TouchController : MonoBehaviour
 
 
 
-        //if (Input.touchCount > 0 && Input.GetTouch(0).phase == touchPhase)
+       /* //if (Input.touchCount > 0 && Input.GetTouch(0).phase == touchPhase)
         if(Input.GetMouseButtonDown(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -53,7 +57,7 @@ public class TouchController : MonoBehaviour
                     print("Touched 2 " + touchedNode.gameObject.name);
                     Destroy(touchedNode);
                 }
-            }
+            }*/
 
 
             /*Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -78,6 +82,6 @@ public class TouchController : MonoBehaviour
                 }
 
             }*/
-        }
+       // }
 	}
 }
