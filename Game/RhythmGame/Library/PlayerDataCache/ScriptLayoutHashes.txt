@@ -5,6 +5,7 @@ Assets/Scenes/Information.unity
 Assets/Scenes/Level 01.unity
 Assets/Scenes/Level_Test.unity
 SceneListEnd?
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DestroyOnClick
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.OnClick
 fcc05ce1979d564df42168ae393e643c Assembly-CSharp.dll:.Node
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -191,7 +192,8 @@ d2a2bd333db22f480a8589e167314ecc Vuforia.UnityExtensions.dll:Vuforia.UserDefined
 7e8a6ea85b408842a52a89a7113a3c29 Assembly-CSharp.dll:.Activator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TouchController
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Customers
+2124af75d6b3afb90d3c8471b98e9f78 Assembly-CSharp.dll:.TouchController
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -220,7 +222,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputManager
-7799ad91d5c0669bdfca39edd302f2cc Assembly-CSharp.dll:.ScoreManager
+32db2e4ae02220d286bb364b6912c14d Assembly-CSharp.dll:.ScoreManager
 e17b886e9c66a3be25971c126effdc43 Assembly-CSharp.dll:.Chef
 26215f135eeb48d8fa1189498c107f6c Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour
 0561521e336e270e6e5a9c61387cb838 Vuforia.UnityExtensions.dll:Vuforia.AnchorInputListenerBehaviour

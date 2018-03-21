@@ -33,14 +33,21 @@ public class GameManager : MonoBehaviour {
         }
 
         // Set the first players turn
-        isPlayerOne = false;
+        isPlayerOne = true;
     }
     void Start ()
     {
-        //playerTwoSpawner.SpawnNewNode();
+        TurnSwitch();
     }
 
 	void Update ()
+    {
+        TurnSwitch();
+    }
+
+
+
+    public void TurnSwitch()
     {
         // Check if player 1
         if (isPlayerOne)
@@ -50,7 +57,7 @@ public class GameManager : MonoBehaviour {
             {
                 playerOneSpawner.SpawnNewNode();
                 playerOneNode.isActive = true;
-            }  
+            }
         }
         // Check if player 2
         else
@@ -60,26 +67,7 @@ public class GameManager : MonoBehaviour {
             {
                 playerTwoSpawner.SpawnNewNode();
                 playerTwoNode.isActive = true;
-            }    
-        }
-    }
-
-    public void TurnSwitch(GameObject node)
-    {
-        print("Turn switch");
-
-        if (isPlayerOne)
-        {
-            isPlayerOne = false;
-            playerTwoSpawner.SpawnNewNode();
-            Destroy(node);
-            
-        }
-        else if (!isPlayerOne)
-        {
-            isPlayerOne = true;
-            playerOneSpawner.SpawnNewNode();
-            Destroy(node);
+            }
         }
     }
 }
