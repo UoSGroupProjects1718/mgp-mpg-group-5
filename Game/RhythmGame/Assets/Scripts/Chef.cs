@@ -59,6 +59,7 @@ public class Chef : MonoBehaviour
         {
             // Move chef to current target waypoint
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1chefWaypoints[chefCurrentWaypoint].transform.position, speed * Time.deltaTime);
+            Quaternion.LookRotation(p1chefWaypoints[chefCurrentWaypoint].transform.position);
 
             // Check if the timer has run out
             if (timer <= 0f)
@@ -76,6 +77,10 @@ public class Chef : MonoBehaviour
             // Move chef to current target waypoint
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2chefWaypoints[chef2CurrentWaypoint].transform.position, speed * Time.deltaTime);
 
+            Vector3 reletivePosition = p2chefWaypoints[chef2CurrentWaypoint].transform.position - transform.position;
+            Quaternion rotation = Quaternion.LookRotation(reletivePosition);
+            transform.rotation.Set(rotation.x, rotation.y, rotation.z, rotation.w);
+
             // Check if the timer has run out
             if (timer <= 0f)
             {
@@ -86,7 +91,7 @@ public class Chef : MonoBehaviour
             }
         }
 
-        LookAtRotation();
+        //LookAtRotation();
     }
 
     void LookAtRotation()

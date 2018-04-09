@@ -32,11 +32,12 @@ public class GameManager : MonoBehaviour {
             Destroy(gameObject);
         }
 
-        // Set the first players turn
-        isPlayerOne = true;
     }
     void Start ()
     {
+        // Set the first players turn
+        isPlayerOne = true;
+
         TurnSwitch();
     }
 
