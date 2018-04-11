@@ -7,8 +7,8 @@ public class ScoreManager : MonoBehaviour {
     // Singleton pattern to make sure only one instance of ScoreManager exists
     public static ScoreManager instance = null;
 
-    public static List<GameObject> playerOneCustomers;
-    public static List<GameObject> playerTwoCustomers;
+    //public static List<GameObject> playerOneCustomers;
+    //public static List<GameObject> playerTwoCustomers;
 
     // Player score variables
     public int playerOneScore;
@@ -31,7 +31,7 @@ public class ScoreManager : MonoBehaviour {
 
     void Start ()
     {
-        GameObject p1Customers = GameObject.Find("Player One Customers");
+        //GameObject p1Customers = GameObject.Find("Player One Customers");
     }
 
 	void Update ()
@@ -44,7 +44,7 @@ public class ScoreManager : MonoBehaviour {
         // Check if player 1
         if (GameManager.instance.isPlayerOne)
         {
-
+            
         }
 
         // Check if player 2

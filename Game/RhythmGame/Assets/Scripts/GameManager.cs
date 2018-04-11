@@ -15,6 +15,13 @@ public class GameManager : MonoBehaviour {
     public Node playerOneNode;
     public Node playerTwoNode;
 
+    // Reference to Customers script
+    public Customers custom;
+
+    //List of customers
+    public List<GameObject> playerOneList = new List<GameObject>();
+    public List<GameObject> playerTwoList = new List<GameObject>();
+
     // Turn check bool
     public bool isPlayerOne;
 
@@ -31,6 +38,10 @@ public class GameManager : MonoBehaviour {
             // If a GameManager already exists, destroy the new GameManager
             Destroy(gameObject);
         }
+    
+        // Add customers into their respective lists
+        playerOneList.AddRange(GameObject.FindGameObjectsWithTag("p1Customer"));
+        playerTwoList.AddRange(GameObject.FindGameObjectsWithTag("p2Customer"));
 
     }
     void Start ()
@@ -38,7 +49,7 @@ public class GameManager : MonoBehaviour {
         // Set the first players turn
         isPlayerOne = true;
 
-        TurnSwitch();
+        //TurnSwitch();
     }
 
 	void Update ()
@@ -58,6 +69,7 @@ public class GameManager : MonoBehaviour {
             {
                 playerOneSpawner.SpawnNewNode();
                 playerOneNode.isActive = true;
+                custom.PickRandomCustomer();
             }
         }
         // Check if player 2
@@ -68,6 +80,7 @@ public class GameManager : MonoBehaviour {
             {
                 playerTwoSpawner.SpawnNewNode();
                 playerTwoNode.isActive = true;
+                custom.PickRandomCustomer();
             }
         }
     }

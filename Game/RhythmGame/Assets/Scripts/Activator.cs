@@ -71,6 +71,11 @@ public class Activator : MonoBehaviour {
         active = false;
     }
 
+    public bool GetStatus()
+    {
+        return active;
+    }
+
     void CheckDistance()
     {
         
