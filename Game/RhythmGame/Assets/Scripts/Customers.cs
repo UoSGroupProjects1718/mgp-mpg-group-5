@@ -4,14 +4,25 @@ using UnityEngine;
 
 public class Customers : MonoBehaviour {
 
-    public Transform cust1Activator;
-    public Transform cust2Activator;
+    static public Transform cust1Activator;
+    static public Transform cust2Activator;
+
+   // public static Customers instance;
 
     // Use this for initialization
     void Start ()
     {
-        
-	}
+        //if (instance == null)
+       // {
+            // If no GameManager exists, set instance to this.
+       //     instance = this;
+       // }
+       // else if (instance != this)
+       // {
+            // If a GameManager already exists, destroy the new GameManager
+      //      Destroy(gameObject);
+      //  }
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -52,8 +63,8 @@ public class Customers : MonoBehaviour {
                 cust1Activator.gameObject.SetActive(false);
 
             // Pick a random customer from the list
-            GameObject randomCustomer = GameManager.instance.playerTwoList[Random.Range(0, GameManager.instance.playerTwoList.Count)];
-            cust2Activator = randomCustomer.transform.GetChild(0);
+            GameObject randomCustomer2 = GameManager.instance.playerTwoList[Random.Range(0, GameManager.instance.playerTwoList.Count)];
+            cust2Activator = randomCustomer2.transform.GetChild(0);
             cust2Activator.gameObject.SetActive(true);
 
 

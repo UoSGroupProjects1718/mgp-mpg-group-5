@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class DestroyOnClick : MonoBehaviour {
 
-    Activator activator;
+    bool activator;
+    Activator activator2;
     Customers customer;
 
 	// Use this for initialization
@@ -15,7 +16,8 @@ public class DestroyOnClick : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        activator = customer.cust1Activator
+        //activator = customer.cust1Activator.GetComponent<Activator>().active;
+        //activator2 = customer.cust2Activator.GetComponent<Activator>();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -25,7 +27,7 @@ public class DestroyOnClick : MonoBehaviour {
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    if (activator != null &&activator.GetStatus() == true )
+                    if (Customers.cust1Activator == true || Customers.cust2Activator == true)
                     {
                         GameManager.instance.isPlayerOne = !GameManager.instance.isPlayerOne;
                         Destroy(gameObject);
