@@ -16,9 +16,9 @@ public class SpawnNode : MonoBehaviour {
         
     }
 	
-	public void SpawnNewNode()
+	public GameObject SpawnNewNode()
     {
         // Create a copy of node at the spawnLocation
-        Instantiate(node, spawnLocation.position, transform.rotation);
+        return Instantiate(node, new Vector3(spawnLocation.position.x, spawnLocation.position.y, spawnLocation.position.z + 0.01f), transform.rotation);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Activator : MonoBehaviour {
 
-    public KeyCode key;
+    //public KeyCode key;
     public bool active = false;
     GameObject nodeObj;
 
@@ -25,11 +25,11 @@ public class Activator : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D collision)
     {
         active = true;
-        if (collision.gameObject.tag == "Node")
-        {
-            nodeObj = collision.gameObject;
-            node = collision.gameObject.GetComponent<Node>();
-        }
+        //if (collision.gameObject.tag == "Node")
+        //{
+        //    nodeObj = collision.gameObject;
+        //    node = collision.gameObject.GetComponent<Node>();
+        //}
     }
 
     void OnTriggerExit2D(Collider2D collision)

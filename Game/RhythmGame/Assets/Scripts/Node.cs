@@ -48,8 +48,11 @@ public class Node : MonoBehaviour {
 
     void Update()
     {
+        Vector3 pos = new Vector3(transform.position.x, transform.position.y, 0.01f);
+        transform.position = pos;
+
         // Check if current player 1
-        if (GameManager.instance.isPlayerOne && this.tag == "PlayerOneTag")
+        if (GameManager.instance.playerTurn == 0 && this.tag == "PlayerOneTag")
         {
             // Move the node towards the currently active waypoint
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position, speed * Time.deltaTime);
@@ -66,12 +69,13 @@ public class Node : MonoBehaviour {
                     Destroy(this.gameObject);
 
                     // If the player misses their node switch the game turn
-                    GameManager.instance.isPlayerOne = false;
+                    //GameManager.instance.isPlayerOne = false;
+                    GameManager.instance.TurnSwitch();
                 }
             }
         }
         // Check if currently player 2
-        else if (!GameManager.instance.isPlayerOne && this.tag == "PlayerTwoTag")
+        else if (GameManager.instance.playerTurn == 1 && this.tag == "PlayerTwoTag")
         {
             // Move the node towards the currently active waypoint
             rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position, speed * Time.deltaTime);
@@ -88,7 +92,7 @@ public class Node : MonoBehaviour {
                     Destroy(this.gameObject);
 
                     // If the player misses their node switch the game turn
-                    GameManager.instance.isPlayerOne = true;
+                    GameManager.instance.TurnSwitch();
                 }
             }
         }

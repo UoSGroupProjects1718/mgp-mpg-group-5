@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Customers : MonoBehaviour {
 
-    static public Transform cust1Activator;
-    static public Transform cust2Activator;
+    [SerializeField] static public Transform cust1Activator;
+    [SerializeField] static public Transform cust2Activator;
 
     // Use this for initialization
     void Start ()
@@ -21,16 +21,17 @@ public class Customers : MonoBehaviour {
 
     public void PickRandomCustomer()
     {
-        if (GameManager.instance.isPlayerOne)
+        if (GameManager.instance.playerTurn == 1)
         {
             // Reset player two activator
             if (cust2Activator == null)
             {
-                print("returning");
+               // print("returning");
             }
             else
             {
-                print("resetting");
+                //print("resetting");
+                print(cust2Activator.name);
                 cust2Activator.gameObject.SetActive(false);
             }
 
@@ -39,13 +40,16 @@ public class Customers : MonoBehaviour {
             cust1Activator = randomCustomer.transform.GetChild(0);
             cust1Activator.gameObject.SetActive(true);
         }
-        else
+        else if (GameManager.instance.playerTurn == 0)
         {
             // Reset player one activator
             if (cust1Activator == null)
                 return;
             else
+            {
+                print(cust1Activator.name);
                 cust1Activator.gameObject.SetActive(false);
+            }
 
             // Pick a random customer from the list
             GameObject randomCustomer2 = GameManager.instance.playerTwoList[Random.Range(0, GameManager.instance.playerTwoList.Count)];
