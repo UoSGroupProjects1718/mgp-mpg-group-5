@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class DestroyOnClick : MonoBehaviour {
 
-    bool activator;
-    Activator activator2;
     Customers customer;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-        //activator = customer.cust1Activator.GetComponent<Activator>().active;
-        //activator2 = customer.cust2Activator.GetComponent<Activator>();
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -27,25 +25,33 @@ public class DestroyOnClick : MonoBehaviour {
             {
                 if (hit.collider.gameObject == gameObject)
                 {
-                    if (Customers.cust1Activator == true || Customers.cust2Activator == true)
+                    if (Customers.cust1Activator.GetComponent<Activator>().active == true || Customers.cust2Activator.GetComponent<Activator>().active == true)
                     {
                         GameManager.instance.isPlayerOne = !GameManager.instance.isPlayerOne;
                         Destroy(gameObject);
 
                         if (hit.collider.gameObject.tag == "PlayerOneTag")
                         {
-                            // Code for player one score.
+                            ScoreManager.instance.playerOneScore += 10;
                         }
 
-                        if (hit.collider.gameObject.tag == "PlayerOneTag")
+                        if (hit.collider.gameObject.tag == "PlayerTwoTag")
                         {
-                            // Code for player two score.
+                            ScoreManager.instance.playerTwoScore += 10;
                         }
                     }
                 }
             }
+            else if (hit.collider == null)
+            {
+                print("SWITCHING");
+                if (GameManager.instance.isPlayerOne)
+                    GameManager.instance.isPlayerOne = false;
+                else if(GameManager.instance.isPlayerOne == false)
+                    GameManager.instance.isPlayerOne = true;
+            }
         }
-
-
 	}
+
+   
 }

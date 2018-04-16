@@ -13,7 +13,6 @@ public class SpawnNode : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-        //InvokeRepeating("SpawnNewNode", 0f, 3f);
         
     }
 	

@@ -91,6 +91,26 @@ public class Node : MonoBehaviour {
                     GameManager.instance.isPlayerOne = true;
                 }
             }
-        }        
+        }
+
+        //DistanceBetweenPoints();
+    }
+
+    void DistanceBetweenPoints()
+    {
+        if (this.gameObject.tag == "PlayerOneTag")
+        {
+            float distance1 = Vector3.Distance(this.transform.position, Customers.cust1Activator.position);
+            print("Distance1: " + distance1);
+        }
+        else if (this.gameObject.tag == "PlayerOneTag")
+        {
+            float distance2 = Vector3.Distance(this.transform.position, Customers.cust2Activator.position);
+            print("Distance2: " + distance2);
+        }
+        else
+        {
+            print("Can't find customer activator");
+        }
     }
 }

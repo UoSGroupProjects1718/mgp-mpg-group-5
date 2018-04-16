@@ -7,21 +7,10 @@ public class Customers : MonoBehaviour {
     static public Transform cust1Activator;
     static public Transform cust2Activator;
 
-   // public static Customers instance;
-
     // Use this for initialization
     void Start ()
     {
-        //if (instance == null)
-       // {
-            // If no GameManager exists, set instance to this.
-       //     instance = this;
-       // }
-       // else if (instance != this)
-       // {
-            // If a GameManager already exists, destroy the new GameManager
-      //      Destroy(gameObject);
-      //  }
+
     }
 	
 	// Update is called once per frame
@@ -34,7 +23,6 @@ public class Customers : MonoBehaviour {
     {
         if (GameManager.instance.isPlayerOne)
         {
-            //print("Yooooo");
             // Reset player two activator
             if (cust2Activator == null)
             {
@@ -50,9 +38,6 @@ public class Customers : MonoBehaviour {
             GameObject randomCustomer = GameManager.instance.playerOneList[Random.Range(0, GameManager.instance.playerOneList.Count)];
             cust1Activator = randomCustomer.transform.GetChild(0);
             cust1Activator.gameObject.SetActive(true);
-
-            // Just testing if this works!!!!!
-            // randomCustomer.transform.localScale = new Vector3(4, 4, 4);
         }
         else
         {
@@ -66,10 +51,6 @@ public class Customers : MonoBehaviour {
             GameObject randomCustomer2 = GameManager.instance.playerTwoList[Random.Range(0, GameManager.instance.playerTwoList.Count)];
             cust2Activator = randomCustomer2.transform.GetChild(0);
             cust2Activator.gameObject.SetActive(true);
-
-
-
-            //randomCustomer.transform.localScale = new Vector3(4, 4, 4);
         }
     }
 }

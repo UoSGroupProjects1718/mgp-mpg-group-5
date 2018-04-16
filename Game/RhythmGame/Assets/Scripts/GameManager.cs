@@ -57,14 +57,13 @@ public class GameManager : MonoBehaviour {
         TurnSwitch();
     }
 
-
-
     public void TurnSwitch()
     {
         // Check if player 1
         if (isPlayerOne)
         {
             playerTwoNode.isActive = false;
+            //ayerTwoNode.gameObject.SetActive(false);
             if (playerOneNode.isActive == false)
             {
                 playerOneSpawner.SpawnNewNode();
@@ -76,6 +75,7 @@ public class GameManager : MonoBehaviour {
         else
         {
             playerOneNode.isActive = false;
+            //playerOneNode.gameObject.SetActive(false);
             if (playerTwoNode.isActive == false)
             {
                 playerTwoSpawner.SpawnNewNode();

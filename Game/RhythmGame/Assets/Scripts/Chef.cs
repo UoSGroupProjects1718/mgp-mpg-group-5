@@ -90,8 +90,6 @@ public class Chef : MonoBehaviour
                 chef2CurrentWaypoint = Random.Range(0, 5);
             }
         }
-
-        //LookAtRotation();
     }
 
     void LookAtRotation()
@@ -103,19 +101,6 @@ public class Chef : MonoBehaviour
         float newRotation = Mathf.LerpAngle(lastRotation.z, targetRotation, 6f);
 
         this.transform.rotation = Quaternion.AngleAxis(newRotation, Vector3.forward);
-
-
-
-        /*
-        if(lastPos == this.transform.position) { return; }
-
-        Vector3 thisRot = this.transform.eulerAngles;
-
-        this.transform.LookAt(lastPos);
-
-        Vector3 newRot = this.transform.eulerAngles;
-
-        this.transform.eulerAngles = new Vector3(thisRot.x, thisRot.y, newRot.z + 180);*/
 
         lastPos = this.transform.position;
     }
