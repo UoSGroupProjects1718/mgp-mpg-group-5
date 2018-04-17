@@ -25,7 +25,11 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> playerOneList = new List<GameObject>();
     public List<GameObject> playerTwoList = new List<GameObject>();
 
+    public Animator p1Miss, p1Hit, p2Miss, p2Hit;
+
     public int playerTurn = -1;
+
+    public bool gameStarted = false;
 
     private int layerMask;
 
@@ -46,13 +50,14 @@ public class GameManager : MonoBehaviour {
         // Add customers into their respective lists
         playerOneList.AddRange(GameObject.FindGameObjectsWithTag("p1Customer"));
         playerTwoList.AddRange(GameObject.FindGameObjectsWithTag("p2Customer"));
+        playerTurn = 1;
 
     }
     void Start ()
     {
         // Set the first players turn
-        playerTurn = 0;
-        TurnSwitch();
+        //playerTurn = 0;
+        //TurnSwitch();
 
         // Set layerMask for raycast
         layerMask = LayerMask.NameToLayer("Node");
@@ -60,6 +65,19 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
+        if (gameStarted == false)
+        {
+            
+
+            OnPress();
+            ScoreManager.instance.playerOneScore = 0;
+            ScoreManager.instance.playerTwoScore = 0;
+            gameStarted = true;
+            //TurnSwitch();
+            //playerTurn = 1;
+            //TurnSwitch();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             OnPress();
@@ -109,12 +127,14 @@ public class GameManager : MonoBehaviour {
                     if (hit.collider.gameObject.tag == "PlayerOneTag")
                     {
                         ScoreManager.instance.playerOneScore += 10;
+                        p1Hit.SetTrigger("peekOut");
                         TurnSwitch();
                     }
 
                     if (hit.collider.gameObject.tag == "PlayerTwoTag")
                     {
                         ScoreManager.instance.playerTwoScore += 10;
+                        p2Hit.SetTrigger("peekOut");
                         TurnSwitch();
                     }
                 }
@@ -123,11 +143,19 @@ public class GameManager : MonoBehaviour {
                     if (GameManager.instance.playerTurn == 0)
                     {
                         ScoreManager.instance.playerOneScore -= 10;
+                        if (gameStarted)
+                        {
+                            p1Miss.SetTrigger("peekOut");
+                        }
                         TurnSwitch();
                     }
                     else if (GameManager.instance.playerTurn == 1)
                     {
                         ScoreManager.instance.playerTwoScore -= 10;
+                        if (gameStarted)
+                        {
+                            p2Miss.SetTrigger("peekOut");
+                        }
                         TurnSwitch();
                     }
                 }
@@ -137,11 +165,19 @@ public class GameManager : MonoBehaviour {
                 if (GameManager.instance.playerTurn == 0)
                 {
                     ScoreManager.instance.playerOneScore -= 10;
+                    if (gameStarted)
+                    {
+                        p1Miss.SetTrigger("peekOut");
+                    }
                     TurnSwitch();
                 }
                 else if (GameManager.instance.playerTurn == 1)
                 {
                     ScoreManager.instance.playerTwoScore -= 10;
+                    if (gameStarted)
+                    {
+                        p2Miss.SetTrigger("peekOut");
+                    }
                     TurnSwitch();
                 }
             }
@@ -151,11 +187,19 @@ public class GameManager : MonoBehaviour {
             if (GameManager.instance.playerTurn == 0)
             {
                 ScoreManager.instance.playerOneScore -= 10;
+                if (gameStarted)
+                {
+                    p1Miss.SetTrigger("peekOut");
+                }
                 TurnSwitch();
             }
             else if (GameManager.instance.playerTurn == 1)
             {
                 ScoreManager.instance.playerTwoScore -= 10;
+                if (gameStarted)
+                {
+                    p2Miss.SetTrigger("peekOut");
+                }
                 TurnSwitch();
             }
         }

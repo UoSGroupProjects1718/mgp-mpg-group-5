@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class ScoreManager : MonoBehaviour {
 
     // Singleton pattern to make sure only one instance of ScoreManager exists
@@ -36,7 +38,14 @@ public class ScoreManager : MonoBehaviour {
 
 	void Update ()
     {
-        
+        if (playerOneScore > playerTwoScore + 50)
+        {
+            SceneManager.LoadScene(3);
+        }
+        if (playerTwoScore > playerOneScore + 50)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void UpdateCustomers()

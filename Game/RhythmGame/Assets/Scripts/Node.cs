@@ -9,6 +9,7 @@ public class Node : MonoBehaviour {
 
     // Create a speed variable
     public float speed = 4f;
+   // public float p2Speed = 4f;
     public bool isActive = false;
 
     #region Waypoint Variables
@@ -48,8 +49,8 @@ public class Node : MonoBehaviour {
 
     void Update()
     {
-        Vector3 pos = new Vector3(transform.position.x, transform.position.y, 0.01f);
-        transform.position = pos;
+        //Vector3 pos = new Vector3(transform.position.x, transform.position.y, 0.01f);
+        //transform.position = pos;
 
         // Check if current player 1
         if (GameManager.instance.playerTurn == 0 && this.tag == "PlayerOneTag")
@@ -95,6 +96,11 @@ public class Node : MonoBehaviour {
                     GameManager.instance.TurnSwitch();
                 }
             }
+        }
+
+        if (ScoreManager.instance.playerOneScore > ScoreManager.instance.playerTwoScore + 2)
+        {
+
         }
         //DistanceBetweenPoints();
     }

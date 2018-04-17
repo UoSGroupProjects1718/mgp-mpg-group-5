@@ -9,7 +9,7 @@ public class OnClick : MonoBehaviour
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene(level);
-        GameManager.instance.playerTurn = 0;
+        //GameManager.instance.playerTurn = 0;
     }
 
     public void QuitGame()
