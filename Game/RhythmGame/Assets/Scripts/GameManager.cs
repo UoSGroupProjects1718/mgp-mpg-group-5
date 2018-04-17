@@ -27,8 +27,7 @@ public class GameManager : MonoBehaviour {
 
     public int playerTurn = -1;
 
-    // Turn check bool
-    public bool isPlayerOne;
+    private int layerMask;
 
     private void Awake()
     {
@@ -52,20 +51,18 @@ public class GameManager : MonoBehaviour {
     void Start ()
     {
         // Set the first players turn
-        //isPlayerOne = true;
-
         playerTurn = 0;
-
         TurnSwitch();
+
+        // Set layerMask for raycast
+        layerMask = LayerMask.NameToLayer("Node");
     }
 
 	void Update ()
     {
-        //TurnSwitch();
-
         if (Input.GetMouseButtonDown(0))
         {
-            ClickThingToFixLater();
+            OnPress();
         }
             
     }
@@ -75,15 +72,6 @@ public class GameManager : MonoBehaviour {
         // Check if player 1
         if (playerTurn == 0)
         {
-            //playerTwoNode.isActive = false;
-            //ayerTwoNode.gameObject.SetActive(false);
-            //if (playerOneNode.isActive == false)
-            //{
-            //    playerOneSpawner.SpawnNewNode();
-            //    playerOneNode.isActive = true;
-            //    custom.PickRandomCustomer();
-            //}
-
             Destroy(currentP1Node);
             currentP1Node = playerOneSpawner.SpawnNewNode();
             custom.PickRandomCustomer();
@@ -91,15 +79,6 @@ public class GameManager : MonoBehaviour {
         // Check if player 2
         else if (playerTurn == 1)
         {
-            //playerOneNode.isActive = false;
-            //playerOneNode.gameObject.SetActive(false);
-            //if (playerTwoNode.isActive == false)
-            //{
-            //    playerTwoSpawner.SpawnNewNode();
-            //    playerTwoNode.isActive = true;
-            //    custom.PickRandomCustomer();
-            //}
-
             Destroy(currentP2Node);
             currentP2Node = playerTwoSpawner.SpawnNewNode();
             custom.PickRandomCustomer();
@@ -115,9 +94,9 @@ public class GameManager : MonoBehaviour {
             playerTurn = 0;
     }
 
-    public void ClickThingToFixLater()
+    public void OnPress()
     {
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 500, 1 << layerMask);
 
         if (hit.collider)
         {
@@ -125,36 +104,60 @@ public class GameManager : MonoBehaviour {
             {
                 if (Customers.cust1Activator.GetComponent<Activator>().GetStatus() == true || Customers.cust2Activator.GetComponent<Activator>().GetStatus() == true)
                 {
-                    print("Yo?");
                     Destroy(hit.collider.gameObject);
 
                     if (hit.collider.gameObject.tag == "PlayerOneTag")
                     {
-                        Debug.Log("WatP1");
                         ScoreManager.instance.playerOneScore += 10;
                         TurnSwitch();
                     }
 
                     if (hit.collider.gameObject.tag == "PlayerTwoTag")
                     {
-                        Debug.Log("WatP2");
                         ScoreManager.instance.playerTwoScore += 10;
                         TurnSwitch();
                     }
                 }
                 else
                 {
-                    TurnSwitch();
+                    if (GameManager.instance.playerTurn == 0)
+                    {
+                        ScoreManager.instance.playerOneScore -= 10;
+                        TurnSwitch();
+                    }
+                    else if (GameManager.instance.playerTurn == 1)
+                    {
+                        ScoreManager.instance.playerTwoScore -= 10;
+                        TurnSwitch();
+                    }
                 }
             }
             else
             {
-                TurnSwitch();
+                if (GameManager.instance.playerTurn == 0)
+                {
+                    ScoreManager.instance.playerOneScore -= 10;
+                    TurnSwitch();
+                }
+                else if (GameManager.instance.playerTurn == 1)
+                {
+                    ScoreManager.instance.playerTwoScore -= 10;
+                    TurnSwitch();
+                }
             }
         }
         else
         {
-            TurnSwitch();
+            if (GameManager.instance.playerTurn == 0)
+            {
+                ScoreManager.instance.playerOneScore -= 10;
+                TurnSwitch();
+            }
+            else if (GameManager.instance.playerTurn == 1)
+            {
+                ScoreManager.instance.playerTwoScore -= 10;
+                TurnSwitch();
+            }
         }
     }
 }

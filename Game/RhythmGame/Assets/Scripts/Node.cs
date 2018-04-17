@@ -96,7 +96,6 @@ public class Node : MonoBehaviour {
                 }
             }
         }
-
         //DistanceBetweenPoints();
     }
 

@@ -41,16 +41,6 @@ public class ScoreManager : MonoBehaviour {
 
     public void UpdateCustomers()
     {
-        // Check if player 1
-        if (GameManager.instance.isPlayerOne)
-        {
-            
-        }
-
-        // Check if player 2
-        else if (!GameManager.instance.isPlayerOne)
-        {
-
-        }
+       
     }
 }
