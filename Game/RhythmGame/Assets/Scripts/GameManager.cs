@@ -67,18 +67,15 @@ public class GameManager : MonoBehaviour {
     {
         if (gameStarted == false)
         {
-            
-
-            OnPress();
+            TurnSwitch();
             ScoreManager.instance.playerOneScore = 0;
             ScoreManager.instance.playerTwoScore = 0;
+            playerTurn = 0;
             gameStarted = true;
             //TurnSwitch();
             //playerTurn = 1;
             //TurnSwitch();
-        }
-
-        if (Input.GetMouseButtonDown(0))
+        } else if (Input.GetMouseButtonDown(0))
         {
             OnPress();
         }
@@ -88,14 +85,14 @@ public class GameManager : MonoBehaviour {
     public void TurnSwitch()
     {
         // Check if player 1
-        if (playerTurn == 0)
+        if (playerTurn == 1)
         {
             Destroy(currentP1Node);
             currentP1Node = playerOneSpawner.SpawnNewNode();
             custom.PickRandomCustomer();
         }
         // Check if player 2
-        else if (playerTurn == 1)
+        else if (playerTurn == 0)
         {
             Destroy(currentP2Node);
             currentP2Node = playerTwoSpawner.SpawnNewNode();
