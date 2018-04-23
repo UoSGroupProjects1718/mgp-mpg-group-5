@@ -8,6 +8,8 @@ public class Chef : MonoBehaviour
     Transform[] p1chefWaypoints = new Transform[5];
     Transform[] p2chefWaypoints = new Transform[5];
 
+    public Animator p1Anim, p2Anim;
+
     // Variable to store current array index
     public int chefCurrentWaypoint = 0;
     public int chef2CurrentWaypoint = 0;
@@ -57,37 +59,83 @@ public class Chef : MonoBehaviour
         // Check if player 1 chef
         if (this.gameObject.tag == "PlayerOneTag")
         {
-            // Move chef to current target waypoint
-            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1chefWaypoints[chefCurrentWaypoint].transform.position, speed * Time.deltaTime);
-            Quaternion.LookRotation(p1chefWaypoints[chefCurrentWaypoint].transform.position);
-
-            // Check if the timer has run out
-            if (timer <= 0f)
+            int anim = Random.Range(1, 11);
+            if (anim > 5)
             {
-                // Reset the timer to a random value between 0 and 3 (Max is exclusive)
-                timer = Random.Range(0, 4);
-                // Randomly select the next target waypoint to move towards
-                chefCurrentWaypoint = Random.Range(0, 5);
+                p1Anim.SetBool("Clean", false);
+                p1Anim.SetBool("Walk", true);
+                p1Anim.SetBool("Idle", false);
+
+                // Move chef to current target waypoint
+                rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1chefWaypoints[chefCurrentWaypoint].transform.position, speed * Time.deltaTime);
+                Quaternion.LookRotation(p1chefWaypoints[chefCurrentWaypoint].transform.position);
+
+                // Check if the timer has run out
+                if (timer <= 0f)
+                {
+                    // Reset the timer to a random value between 0 and 3 (Max is exclusive)
+                    timer = Random.Range(0, 4);
+                    // Randomly select the next target waypoint to move towards
+                    chefCurrentWaypoint = Random.Range(0, 5);
+                }
+            }
+            else if (anim < 5)
+            {
+                // clean anim
+                p1Anim.SetBool("Clean", true);
+                p1Anim.SetBool("Walk", false);
+                p1Anim.SetBool("Idle", false);
+            }
+            else if (anim == 5)
+            {
+                // idle anim
+                p1Anim.SetBool("Clean", false);
+                p1Anim.SetBool("Walk", false);
+                p1Anim.SetBool("Idle", true);
             }
         }
 
         // Check if player 2 chef
         if (this.gameObject.tag == "PlayerTwoTag")
-        {
-            // Move chef to current target waypoint
-            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2chefWaypoints[chef2CurrentWaypoint].transform.position, speed * Time.deltaTime);
+        { 
+            int anim = Random.Range(1, 11);
+            //print("Player 2 anim: " + anim);
 
-            Vector3 reletivePosition = p2chefWaypoints[chef2CurrentWaypoint].transform.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(reletivePosition);
-            transform.rotation.Set(rotation.x, rotation.y, rotation.z, rotation.w);
-
-            // Check if the timer has run out
-            if (timer <= 0f)
+            if (anim > 5)
             {
-                // Reset the timer to a random value between 0 and 3 (Max is exclusive)
-                timer = Random.Range(0, 4);
-                // Randomly select the next target waypoint to move towards
-                chef2CurrentWaypoint = Random.Range(0, 5);
+                p2Anim.SetBool("Clean", false);
+                p2Anim.SetBool("Walk", true);
+                p2Anim.SetBool("Idle", false);
+
+                // Move chef to current target waypoint
+                rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2chefWaypoints[chef2CurrentWaypoint].transform.position, speed * Time.deltaTime);
+
+                Vector3 reletivePosition = p2chefWaypoints[chef2CurrentWaypoint].transform.position - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(reletivePosition);
+                transform.rotation.Set(rotation.x, rotation.y, rotation.z, rotation.w);
+
+                // Check if the timer has run out
+                if (timer <= 0f)
+                {
+                    // Reset the timer to a random value between 0 and 3 (Max is exclusive)
+                    timer = Random.Range(0, 4);
+                    // Randomly select the next target waypoint to move towards
+                    chef2CurrentWaypoint = Random.Range(0, 5);
+                }
+            }
+            else if (anim < 5)
+            {
+                p2Anim.SetBool("Clean", true);
+                p2Anim.SetBool("Walk", false);
+                p2Anim.SetBool("Idle", false);
+                // clean anim
+            }
+            else if (anim == 5)
+            {
+                p2Anim.SetBool("Clean", false);
+                p2Anim.SetBool("Walk", false);
+                p2Anim.SetBool("Idle", true);
+                // idle anim
             }
         }
     }

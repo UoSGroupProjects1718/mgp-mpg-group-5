@@ -38,11 +38,11 @@ public class ScoreManager : MonoBehaviour {
 
 	void Update ()
     {
-        if (playerOneScore > playerTwoScore + 50)
+        if (playerOneScore > playerTwoScore + 50 || playerOneScore > 50)
         {
             SceneManager.LoadScene(3);
         }
-        if (playerTwoScore > playerOneScore + 50)
+        if (playerTwoScore > playerOneScore + 50 || playerTwoScore > 50)
         {
             SceneManager.LoadScene(0);
         }

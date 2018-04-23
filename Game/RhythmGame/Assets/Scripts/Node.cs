@@ -68,7 +68,7 @@ public class Node : MonoBehaviour {
                 if (p1CurrentWaypoint >= finalWaypoint)
                 {
                     Destroy(this.gameObject);
-
+                    ScoreManager.instance.playerOneScore -= 10;
                     // If the player misses their node switch the game turn
                     //GameManager.instance.isPlayerOne = false;
                     GameManager.instance.TurnSwitch();
@@ -91,6 +91,7 @@ public class Node : MonoBehaviour {
                 if (p2CurrentWaypoint >= finalWaypoint)
                 {
                     Destroy(this.gameObject);
+                    ScoreManager.instance.playerTwoScore -= 10;
 
                     // If the player misses their node switch the game turn
                     GameManager.instance.TurnSwitch();
