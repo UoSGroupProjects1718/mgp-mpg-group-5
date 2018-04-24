@@ -143,13 +143,14 @@ public class GameManager : MonoBehaviour {
                                 GameObject customerObj = playerTwoList[i];
                                 Transform customerTrans = customerObj.GetComponent<Transform>();
 
-                                customerTrans = playerOneSeats[j].transform;
+                                customerTrans.position = playerOneSeats[j].transform.position;
 
                                 playerTwoList.RemoveAt(i);
 
                                 playerOneList.Add(customerObj);
+                                break;
                             }
-                            break;
+                           // break;
                         }
 
                         p1Hit.SetTrigger("peekOut");
@@ -174,13 +175,15 @@ public class GameManager : MonoBehaviour {
                                 Transform customerTrans = customerObj.GetComponent<Transform>();
 
 
-                                customerTrans = playerOneSeats[j].transform;
+                                customerTrans.position = playerOneSeats[j].transform.position;
 
                                 playerOneList.RemoveAt(i);
 
                                 playerTwoList.Add(customerObj);
+                                break;
                             }
-                            break;
+                          
+                            
                         }
 
                         p2Hit.SetTrigger("peekOut");
