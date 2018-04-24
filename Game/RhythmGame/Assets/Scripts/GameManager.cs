@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> playerOneList = new List<GameObject>();
     public List<GameObject> playerTwoList = new List<GameObject>();
 
+    public List<GameObject> playerOneSeats = new List<GameObject>();
+    public List<GameObject> playerTwoSeats = new List<GameObject>();
+
     public Animator p1Miss, p1Hit, p2Miss, p2Hit;
 
     public int playerTurn = -1;
@@ -50,6 +53,10 @@ public class GameManager : MonoBehaviour {
         // Add customers into their respective lists
         playerOneList.AddRange(GameObject.FindGameObjectsWithTag("p1Customer"));
         playerTwoList.AddRange(GameObject.FindGameObjectsWithTag("p2Customer"));
+
+        playerOneSeats.AddRange(GameObject.FindGameObjectsWithTag("p1Seat"));
+        playerTwoSeats.AddRange(GameObject.FindGameObjectsWithTag("p1Seat"));
+
         playerTurn = 1;
 
     }
@@ -123,7 +130,28 @@ public class GameManager : MonoBehaviour {
 
                     if (hit.collider.gameObject.tag == "PlayerOneTag")
                     {
-                        ScoreManager.instance.playerOneScore += 10;
+                        ScoreManager.instance.playerOneScore += 10;                     
+
+                        for (int j = 0; j < playerOneSeats.Count; j++)
+                        {
+                            bool seatCheck = playerOneSeats[j].GetComponent<Seat>().taken;
+                          
+                            if (seatCheck == false)
+                            {
+                                int i = Random.Range(0, playerTwoList.Count);
+
+                                GameObject customerObj = playerTwoList[i];
+                                Transform customerTrans = customerObj.GetComponent<Transform>();
+
+                                customerTrans = playerOneSeats[j].transform;
+
+                                playerTwoList.RemoveAt(i);
+
+                                playerOneList.Add(customerObj);
+                            }
+                            break;
+                        }
+
                         p1Hit.SetTrigger("peekOut");
                         TurnSwitch();
                     }
@@ -131,6 +159,30 @@ public class GameManager : MonoBehaviour {
                     if (hit.collider.gameObject.tag == "PlayerTwoTag")
                     {
                         ScoreManager.instance.playerTwoScore += 10;
+
+                       
+
+                        for (int j = 0; j < playerOneSeats.Count; j++)
+                        {
+                            bool seatCheck = playerOneSeats[j].GetComponent<Seat>().taken;
+
+                            if (seatCheck == false)
+                            {
+                                int i = Random.Range(0, playerOneList.Count);
+
+                                GameObject customerObj = playerOneList[i];
+                                Transform customerTrans = customerObj.GetComponent<Transform>();
+
+
+                                customerTrans = playerOneSeats[j].transform;
+
+                                playerOneList.RemoveAt(i);
+
+                                playerTwoList.Add(customerObj);
+                            }
+                            break;
+                        }
+
                         p2Hit.SetTrigger("peekOut");
                         TurnSwitch();
                     }
