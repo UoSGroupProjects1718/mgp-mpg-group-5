@@ -8,7 +8,8 @@ public class Node : MonoBehaviour {
     Rigidbody2D rb;
 
     // Create a speed variable
-    public float speed = 4f;
+    public float p1Speed = 4f;
+    public float p2Speed = 4f;
    // public float p2Speed = 4f;
     public bool isActive = false;
 
@@ -56,7 +57,7 @@ public class Node : MonoBehaviour {
         if (GameManager.instance.playerTurn == 0 && this.tag == "PlayerOneTag")
         {
             // Move the node towards the currently active waypoint
-            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position, speed * Time.deltaTime);
+            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position, p1Speed * Time.deltaTime);
 
             // Check if the node has hit the current target waypoint
             if (Vector2.Distance(this.transform.position, p1Waypoints[p1CurrentWaypoint].transform.position) < 0.1)
@@ -79,7 +80,7 @@ public class Node : MonoBehaviour {
         else if (GameManager.instance.playerTurn == 1 && this.tag == "PlayerTwoTag")
         {
             // Move the node towards the currently active waypoint
-            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position, speed * Time.deltaTime);
+            rb.transform.position = Vector2.MoveTowards(rb.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position, p2Speed * Time.deltaTime);
 
             // Check if the node has hit the current target waypoint
             if (Vector2.Distance(this.transform.position, p2Waypoints[p2CurrentWaypoint].transform.position) < 0.1)
@@ -99,11 +100,7 @@ public class Node : MonoBehaviour {
             }
         }
 
-        if (ScoreManager.instance.playerOneScore > ScoreManager.instance.playerTwoScore + 2)
-        {
-
-        }
-        //DistanceBetweenPoints();
+        SpeedCheck();
     }
 
     void DistanceBetweenPoints()
@@ -121,6 +118,43 @@ public class Node : MonoBehaviour {
         else
         {
             print("Can't find customer activator");
+        }
+    }
+
+    void SpeedCheck()
+    {
+        // Adjust player one speed
+        if (GameManager.instance.playerOneList.Count > GameManager.instance.playerTwoList.Count + 2)
+        {
+            p1Speed = 6f;
+            p2Speed = 3f;
+        }
+        else if (GameManager.instance.playerOneList.Count > GameManager.instance.playerTwoList.Count + 3)
+        {
+            p1Speed = 7f;
+            p2Speed = 3f;
+        }
+        else if (GameManager.instance.playerOneList.Count > GameManager.instance.playerTwoList.Count + 4)
+        {
+            p1Speed = 9f;
+            p2Speed = 3f;
+        }
+
+        // Adjust player two speed
+        if (GameManager.instance.playerTwoList.Count > GameManager.instance.playerOneList.Count + 2)
+        {
+            p2Speed = 6f;
+            p1Speed = 3f;
+        }
+        else if (GameManager.instance.playerTwoList.Count > GameManager.instance.playerOneList.Count + 3)
+        {
+            p2Speed = 7f;
+            p1Speed = 3f;
+        }
+        else if (GameManager.instance.playerTwoList.Count > GameManager.instance.playerOneList.Count + 4)
+        {
+            p2Speed = 9f;
+            p1Speed = 3f;
         }
     }
 }

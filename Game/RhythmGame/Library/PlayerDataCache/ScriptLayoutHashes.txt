@@ -4,7 +4,7 @@ Assets/Scenes/Menu.unity
 Assets/Scenes/Sushi_Bars.unity
 SceneListEnd?
 3c263eabad8ce03bf70d3eecc410aaa5 Assembly-CSharp.dll:.OnClick
-fcc05ce1979d564df42168ae393e643c Assembly-CSharp.dll:.Node
+999ef8b7f2a8f4a54042f76952029876 Assembly-CSharp.dll:.Node
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 dbc29a6f2739d277c10da432d73adb6d UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 8144169769d51429c4aedc8b0f92d47b UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
