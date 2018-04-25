@@ -132,25 +132,33 @@ public class GameManager : MonoBehaviour {
                     {
                         ScoreManager.instance.playerOneScore += 10;                     
 
+                        // Loop through player ones seat until a free seat is found
                         for (int j = 0; j < playerOneSeats.Count; j++)
                         {
                             bool seatCheck = playerOneSeats[j].GetComponent<Seat>().taken;
                           
                             if (seatCheck == false)
                             {
+                                // Pick a random customer from player twos list
                                 int i = Random.Range(0, playerTwoList.Count);
 
+                                // Pull the gameObject and Transform
                                 GameObject customerObj = playerTwoList[i];
                                 Transform customerTrans = customerObj.GetComponent<Transform>();
 
+                                Transform lookPoint = customerObj.GetComponentInChildren<Transform>().transform;
+
+                                // Set the new transform to be that of the free seat at player ONE bar.
                                 customerTrans.position = playerOneSeats[j].transform.position;
+                                customerTrans.LookAt(lookPoint, Vector2.up);
 
+                                // Remove from player twos list and add to player one
                                 playerTwoList.RemoveAt(i);
-
                                 playerOneList.Add(customerObj);
+
                                 break;
                             }
-                           // break;
+                            // break;
                         }
 
                         p1Hit.SetTrigger("peekOut");
@@ -161,11 +169,9 @@ public class GameManager : MonoBehaviour {
                     {
                         ScoreManager.instance.playerTwoScore += 10;
 
-                       
-
-                        for (int j = 0; j < playerOneSeats.Count; j++)
+                        for (int j = 0; j < playerTwoSeats.Count; j++)
                         {
-                            bool seatCheck = playerOneSeats[j].GetComponent<Seat>().taken;
+                            bool seatCheck = playerTwoSeats[j].GetComponent<Seat>().taken;
 
                             if (seatCheck == false)
                             {
@@ -174,16 +180,17 @@ public class GameManager : MonoBehaviour {
                                 GameObject customerObj = playerOneList[i];
                                 Transform customerTrans = customerObj.GetComponent<Transform>();
 
+                                Transform lookPoint = customerObj.GetComponentInChildren<Transform>().transform;
 
-                                customerTrans.position = playerOneSeats[j].transform.position;
+                                customerTrans.position = playerTwoSeats[j].transform.position;
+                                customerTrans.LookAt(lookPoint, Vector2.up);
 
                                 playerOneList.RemoveAt(i);
 
                                 playerTwoList.Add(customerObj);
                                 break;
                             }
-                          
-                            
+                            // break;
                         }
 
                         p2Hit.SetTrigger("peekOut");
