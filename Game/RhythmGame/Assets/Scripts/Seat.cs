@@ -12,7 +12,11 @@ public class Seat : MonoBehaviour
         {
             taken = true;
         }
-        else
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "p1Customer" || collision.gameObject.tag == "p2Customer")
         {
             taken = false;
         }

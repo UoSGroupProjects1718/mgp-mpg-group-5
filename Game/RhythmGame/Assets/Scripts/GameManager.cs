@@ -86,7 +86,16 @@ public class GameManager : MonoBehaviour {
         {
             OnPress();
         }
-            
+
+        if (playerOneList.Count == 10)
+        {
+            EndGame();
+        }
+        if (playerTwoList.Count == 10)
+        {
+            EndGame();
+        }
+
     }
 
     public void TurnSwitch()
@@ -114,6 +123,11 @@ public class GameManager : MonoBehaviour {
 
         if (playerTurn > 1)
             playerTurn = 0;
+    }
+
+    public void EndGame()
+    {
+        playerTurn = 2;
     }
 
     public void OnPress()

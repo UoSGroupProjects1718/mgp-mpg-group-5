@@ -16,6 +16,8 @@ public class ScoreManager : MonoBehaviour {
     public int playerOneScore;
     public int playerTwoScore;
 
+    public Animator p1WinText, p2WinText, p1WinChef, p2WinChef;
+
     private void Awake()
     {
         // Check if instance is equal to null
@@ -38,13 +40,15 @@ public class ScoreManager : MonoBehaviour {
 
 	void Update ()
     {
-        if (playerOneScore > playerTwoScore + 50 || playerOneScore > 50)
+        if (GameManager.instance.playerOneList.Count == 10)
         {
-            SceneManager.LoadScene(3);
+            p1WinText.SetBool("p1Text", true);
+            p1WinChef.SetBool("p1Chef", true);
         }
-        if (playerTwoScore > playerOneScore + 50 || playerTwoScore > 50)
+        if (GameManager.instance.playerTwoList.Count == 10)
         {
-            SceneManager.LoadScene(0);
+            p2WinText.SetBool("p2Text", true);
+            p2WinChef.SetBool("p2Chef", true);
         }
     }
 
