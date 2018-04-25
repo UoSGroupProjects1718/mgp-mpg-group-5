@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class OnClick : MonoBehaviour
 {
+
+    public Animator animator;
+
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene(level);
@@ -15,5 +18,15 @@ public class OnClick : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void PlayAnim()
+    {
+        animator.SetBool("Visible", true);
+    }
+
+    public void StopAnim()
+    {
+        animator.SetBool("Visible", false);
     }
 }

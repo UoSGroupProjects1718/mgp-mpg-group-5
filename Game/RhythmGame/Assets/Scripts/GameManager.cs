@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour {
         playerTwoList.AddRange(GameObject.FindGameObjectsWithTag("p2Customer"));
 
         playerOneSeats.AddRange(GameObject.FindGameObjectsWithTag("p1Seat"));
-        playerTwoSeats.AddRange(GameObject.FindGameObjectsWithTag("p1Seat"));
+        playerTwoSeats.AddRange(GameObject.FindGameObjectsWithTag("p2Seat"));
 
         playerTurn = 1;
 
@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour {
                     {
                         ScoreManager.instance.playerOneScore += 10;                     
 
-                        // Loop through player ones seat until a free seat is found
+                        // Loop through player ones seats until a free seat is found
                         for (int j = 0; j < playerOneSeats.Count; j++)
                         {
                             bool seatCheck = playerOneSeats[j].GetComponent<Seat>().taken;
@@ -149,12 +149,15 @@ public class GameManager : MonoBehaviour {
                                 Transform lookPoint = customerObj.GetComponentInChildren<Transform>().transform;
 
                                 // Set the new transform to be that of the free seat at player ONE bar.
-                                customerTrans.position = playerOneSeats[j].transform.position;
-                                customerTrans.LookAt(lookPoint, Vector2.up);
+                                customerObj.transform.position = playerOneSeats[j].transform.position;
+                                customerObj.transform.rotation = Quaternion.Euler(0f, 0f, playerOneSeats[j].transform.eulerAngles.z - 90f);
+                                //customerTrans.LookAt(lookPoint, Vector2.up);
 
                                 // Remove from player twos list and add to player one
                                 playerTwoList.RemoveAt(i);
                                 playerOneList.Add(customerObj);
+
+                                print("Player two loses customer");
 
                                 break;
                             }
@@ -169,25 +172,33 @@ public class GameManager : MonoBehaviour {
                     {
                         ScoreManager.instance.playerTwoScore += 10;
 
+                        // Loop through player two seats until a free one has been found
                         for (int j = 0; j < playerTwoSeats.Count; j++)
                         {
                             bool seatCheck = playerTwoSeats[j].GetComponent<Seat>().taken;
 
                             if (seatCheck == false)
                             {
+                                // pick a random customer from player ones list
                                 int i = Random.Range(0, playerOneList.Count);
 
+                                // Pull the gameObject and transform
                                 GameObject customerObj = playerOneList[i];
                                 Transform customerTrans = customerObj.GetComponent<Transform>();
 
                                 Transform lookPoint = customerObj.GetComponentInChildren<Transform>().transform;
 
-                                customerTrans.position = playerTwoSeats[j].transform.position;
-                                customerTrans.LookAt(lookPoint, Vector2.up);
+                                // Set the transform to be that of the free seat at player TWO bar
+                                customerObj.transform.position = playerTwoSeats[j].transform.position;
+                                customerObj.transform.rotation = Quaternion.Euler(0f, 0f, playerTwoSeats[j].transform.eulerAngles.z - 90f);
+                                //customerTrans.LookAt(lookPoint, Vector2.up);
 
+                                // Remove from player one list and add into player two list
                                 playerOneList.RemoveAt(i);
-
                                 playerTwoList.Add(customerObj);
+
+                                print("Player one loses customer");
+
                                 break;
                             }
                             // break;
