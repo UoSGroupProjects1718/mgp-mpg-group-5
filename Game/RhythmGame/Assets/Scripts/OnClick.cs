@@ -12,6 +12,8 @@ public class OnClick : MonoBehaviour
     public Button info;
     public Button play;
 
+    public Button replay;
+
     public void LoadLevel(int level)
     {
         SceneManager.LoadScene(level);

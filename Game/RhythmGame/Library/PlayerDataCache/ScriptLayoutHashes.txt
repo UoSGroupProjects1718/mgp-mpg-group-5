@@ -3,7 +3,7 @@ SceneListBegin?
 Assets/Scenes/Menu.unity
 Assets/Scenes/Sushi_Bars.unity
 SceneListEnd?
-3c263eabad8ce03bf70d3eecc410aaa5 Assembly-CSharp.dll:.OnClick
+fef6a98720c2df95051f4389b1498ca1 Assembly-CSharp.dll:.OnClick
 999ef8b7f2a8f4a54042f76952029876 Assembly-CSharp.dll:.Node
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 dbc29a6f2739d277c10da432d73adb6d UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -216,7 +216,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
-3080af78412cf7f4981fedb6f3e140cd Assembly-CSharp.dll:.ScoreManager
+9cbc54454f3aa8f1012cd79da55232aa Assembly-CSharp.dll:.ScoreManager
 0113e6db20c989be1f2a1e0aeff6ee6c Assembly-CSharp.dll:.Seat
 834208f7754eb63f2b8b1b2a8119a70f Assembly-CSharp.dll:.Chef
 26215f135eeb48d8fa1189498c107f6c Vuforia.UnityExtensions.dll:Vuforia.AnchorBehaviour

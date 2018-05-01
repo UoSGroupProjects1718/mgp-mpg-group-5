@@ -16,7 +16,7 @@ public class ScoreManager : MonoBehaviour {
     public int playerOneScore;
     public int playerTwoScore;
 
-    public Animator p1WinText, p2WinText, p1WinChef, p2WinChef;
+    public Animator p1WinText, p2WinText, p1WinChef, p2WinChef, replay;
 
     private void Awake()
     {
@@ -44,11 +44,13 @@ public class ScoreManager : MonoBehaviour {
         {
             p1WinText.SetBool("p1Text", true);
             p1WinChef.SetBool("p1Chef", true);
+            replay.SetBool("replay", true);
         }
         if (GameManager.instance.playerTwoList.Count == 10)
         {
             p2WinText.SetBool("p2Text", true);
             p2WinChef.SetBool("p2Chef", true);
+            replay.SetBool("replay", true);
         }
     }
 
